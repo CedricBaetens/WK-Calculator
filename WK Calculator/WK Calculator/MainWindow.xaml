@@ -1,8 +1,14 @@
 ﻿<Window x:Class="WK_Calculator.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="WK Calculator" Height="350" Width="525">
+    <Grid Loaded="Grid_Loaded">
+        <ListBox Name="lbUsers" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>        
     </Grid>
 </Window>
