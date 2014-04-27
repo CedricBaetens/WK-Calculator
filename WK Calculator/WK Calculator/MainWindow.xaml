@@ -3,12 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="WK Calculator" Height="350" Width="525">
     <Grid Loaded="Grid_Loaded">
-        <ListBox Name="lbUsers" ItemsSource="{Binding}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListBox Grid.Column="0" Name="lbUsers" ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>        
+        </ListBox>
+        
+        <ListBox Grid.Column="1" Name="lbMatches">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ElementName=lbUsers, Path=SelectedItem.Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <TextBlock Grid.Column="2" Text="{Binding ElementName=lbUsers, Path=SelectedItem.Name}"/>
     </Grid>
 </Window>

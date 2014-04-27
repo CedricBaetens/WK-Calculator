@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PropertyChanged;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,12 +18,10 @@ using System.Windows.Shapes;
 
 namespace WK_Calculator
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    [ImplementPropertyChanged]
     public partial class MainWindow : Window
     {
-        List<User> users = new List<User>();
+        ObservableCollection<User> users = new ObservableCollection<User>();
 
         Schema SpeelSchema = new Schema();
 
@@ -38,6 +38,8 @@ namespace WK_Calculator
             users.Add(new User() { Name = "Patrik" });
             users.Add(new User() { Name = "Ingrid" });
             lbUsers.DataContext = users;
+            lbMatches.DataContext = users[0];
+
 
             // Read Group Matches + add to Speelschema
             string[] lines = File.ReadAllLines(dataFolder + @"\Matchen.txt" );
@@ -60,11 +62,11 @@ namespace WK_Calculator
 
                         // Datum
                         var tempDatum = line.Split(',');
-                        var datum = tempDatum[0];
+                        var datum = tempDatum[0].Replace(' ','-');
                         var uurSplit = tempDatum[1].Split('(');
                         string uur = uurSplit[1].Substring(0,2);
 
-                        string datumFull = datum + " 2014, "+ uur + "u";
+                        string datumFull = datum +  "-" + uur;
 
                         groep.Matchen.Add(new Match(teamA,teamB,datumFull));
                     }
@@ -78,6 +80,12 @@ namespace WK_Calculator
                 user.SpeelSchema = SpeelSchema;
             }
 
+        }
+
+        private void lbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            User temp = (User)lbUsers.SelectedItem;
+            lbMatches.DataContext = temp;
         }
     }
 }

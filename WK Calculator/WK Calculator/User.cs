@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 namespace WK_Calculator
 {
     [ImplementPropertyChanged]
-    class User
+    public class User
     {
         public string Name { get; set; }
         public int Points { get; set; }
         public Schema SpeelSchema { get; set; }
-
-        public User()
-        {
-            
-        }
     }
 }
