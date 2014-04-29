@@ -44,6 +44,8 @@ namespace WK_Calculator
             var date = datum.Split('-');
             if (date[1]=="juni")
                 date[1] = "06";
+            if (date[1] == "juli")
+                date[1] = "07";
 
             Datum = new DateTime(2014,Convert.ToInt32(date[1]),Convert.ToInt32(date[0]),Convert.ToInt32(date[2]),0,0);        
         }

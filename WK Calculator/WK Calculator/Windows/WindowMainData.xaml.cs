@@ -23,16 +23,17 @@ namespace WK_Calculator
         {
             InitializeComponent();
 
+            // Visibility
             lbMatches.Visibility = Visibility.Hidden;
             grMatchData.Visibility = Visibility.Hidden;
-            
+
+            //
+            grData.DataContext = Data.Last4;
         }
 
         private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lbMatches.DataContext = ((Group)lbSchema.SelectedItem).Matchen;
-
-
             lbMatches.Visibility = Visibility.Visible;
             grMatchData.Visibility = Visibility.Hidden;
         }

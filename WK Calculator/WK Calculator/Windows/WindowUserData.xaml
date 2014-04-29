@@ -48,8 +48,8 @@
             <TextBlock Margin="10" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamA}" TextAlignment="Center"/>
             <TextBlock Margin="10" Grid.Column="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamB}" TextAlignment="Center"/>
 
-            <TextBox Margin="10" Grid.Row="1" Name="tbTeamAScore" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamAScore}" TextAlignment="Center"/>
-            <TextBox Margin="10" Grid.Row="1" Name="tbTeamBScore" Grid.Column="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamBScore}" TextAlignment="Center"/>
+            <TextBox Margin="10" Grid.Row="1" Name="tbTeamAScore" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamAScore}" TextAlignment="Center" GotFocus="tb_GotFocus"/>
+            <TextBox Margin="10" Grid.Row="1" Name="tbTeamBScore" Grid.Column="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamBScore}" TextAlignment="Center" GotFocus="tb_GotFocus"/>
         </Grid>
     </Grid>
 </Window>

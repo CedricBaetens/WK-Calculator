@@ -38,7 +38,8 @@ namespace WK_Calculator
 
         private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            lbMatches.DataContext = ((Group)lbSchema.SelectedItem).Matchen;
+            if (((Group)lbSchema.SelectedItem) != null)
+                lbMatches.DataContext = ((Group)lbSchema.SelectedItem).Matchen;
             lbSchema.Visibility = Visibility.Visible;
             lbMatches.Visibility = Visibility.Visible;
             grMatchData.Visibility = Visibility.Hidden;
@@ -49,6 +50,11 @@ namespace WK_Calculator
             lbSchema.Visibility = Visibility.Visible;
             lbMatches.Visibility = Visibility.Visible;
             grMatchData.Visibility = Visibility.Visible;
+        }
+
+        private void tb_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).Clear();
         }
     }
 }

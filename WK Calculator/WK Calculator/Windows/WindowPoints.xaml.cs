@@ -50,31 +50,20 @@ namespace WK_Calculator
                         //Wedstrijd is gespeeld
                         if (mainMatch.TeamAScore != -1 && mainMatch.TeamBScore != -1)
                         {
-                            // Speler heeft wedstrijd ingevult
-                            if (userMatch.TeamAScore != -1 && userMatch.TeamBScore != -1)
+                            // Zelfde Uitslag
+                            if (userMatch.TeamAScore == mainMatch.TeamAScore &&
+                                userMatch.TeamBScore == mainMatch.TeamBScore)
                             {
-                                // Zelfde Uitslag
-                                if (userMatch.TeamAScore == mainMatch.TeamAScore &&
-                                    userMatch.TeamBScore == mainMatch.TeamBScore)
-                                {
-                                    Data.Users[i].Points += 5;
-                                }
-
-                                else
-                                {
-                                    if (userMatch.Winnaar == mainMatch.Winnaar)
-                                    {
-                                        Data.Users[i].Points += 3;
-                                    }
-                                }
+                                Data.Users[i].Points += 5;
                             }
 
-                            // Speler heeft match niet ingevult
                             else
                             {
-                                Data.Users[i].Points -= 10;
+                                if (userMatch.Winnaar == mainMatch.Winnaar)
+                                {
+                                    Data.Users[i].Points += 2;
+                                }
                             }
-
                         } 
                     }
                 }
