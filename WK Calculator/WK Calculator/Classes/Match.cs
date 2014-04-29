@@ -28,5 +28,10 @@ namespace WK_Calculator
 
             Datum = new DateTime(2014,Convert.ToInt32(date[1]),Convert.ToInt32(date[0]),Convert.ToInt32(date[2]),0,0);        
         }
+
+        public override string ToString()
+        {
+            return TeamA + " - " + TeamB + "(" + Datum.ToString(@"dd/MM/yyyy") + ")";
+        }
     }
 }

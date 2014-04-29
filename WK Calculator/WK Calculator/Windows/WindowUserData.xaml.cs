@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 namespace WK_Calculator
 {
     [ImplementPropertyChanged]
-    public partial class MainWindow : Window
+    public partial class WindowUserData : Window
     {
         ObservableCollection<User> users = new ObservableCollection<User>();
 
@@ -27,18 +27,20 @@ namespace WK_Calculator
 
         string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Downloader";
 
-        public MainWindow()
+        public WindowUserData()
         {
             InitializeComponent();
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
+            // UI
+            HideWindows(3);
+
             users.Add(new User() {Name = "Cedric"});
             users.Add(new User() { Name = "Patrik" });
             users.Add(new User() { Name = "Ingrid" });
             lbUsers.DataContext = users;
-            lbMatches.DataContext = users[0];
 
 
             // Read Group Matches + add to Speelschema
@@ -70,7 +72,7 @@ namespace WK_Calculator
 
                         groep.Matchen.Add(new Match(teamA,teamB,datumFull));
                     }
-                    SpeelSchema.GroepsFase.Add(groep);
+                    SpeelSchema.Groups.Add(groep);
                 }
             }
 
@@ -82,10 +84,46 @@ namespace WK_Calculator
 
         }
 
+        private void HideWindows(int Count)
+        {
+            if (Count == 3)
+            {
+                lbGroepen.Visibility = Visibility.Hidden;
+                lbMatches.Visibility = Visibility.Hidden;
+                grMatchData.Visibility = Visibility.Hidden;
+                
+            }
+            else if (Count == 2)
+            {
+                lbMatches.Visibility = Visibility.Hidden;
+                grMatchData.Visibility = Visibility.Hidden;
+            }
+            
+        }
+
         private void lbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            User temp = (User)lbUsers.SelectedItem;
-            lbMatches.DataContext = temp;
+            HideWindows(3);
+            lbGroepen.DataContext = ((User)lbUsers.SelectedItem).SpeelSchema.Groups;
+            lbGroepen.Visibility = Visibility.Visible;
+        }
+
+        private void lbGroepen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            HideWindows(2);
+            lbMatches.Visibility = Visibility.Visible;
+            lbMatches.DataContext = ((Group)lbGroepen.SelectedItem).Matchen;
+        }
+
+        private void lbMatches_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbMatches.SelectedIndex > -1)
+                grMatchData.Visibility = Visibility.Visible;
+        }
+
+        private void btnCalculatePoints_Click(object sender, RoutedEventArgs e)
+        {
+            int a = 0;
         }
     }
 }

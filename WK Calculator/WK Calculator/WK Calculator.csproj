@@ -57,11 +57,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Group.cs" />
-    <Compile Include="Match.cs" />
-    <Compile Include="Schema.cs" />
-    <Compile Include="User.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Classes\Data.cs" />
+    <Compile Include="Classes\Group.cs" />
+    <Compile Include="Classes\Match.cs" />
+    <Compile Include="Classes\Schema.cs" />
+    <Compile Include="Windows\WindowMainData.xaml.cs">
+      <DependentUpon>WindowMainData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WindowStartup.xaml.cs">
+      <DependentUpon>WindowStartup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\User.cs" />
+    <Page Include="Windows\WindowMainData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WindowUserData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -69,10 +80,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Windows\WindowUserData.xaml.cs">
+      <DependentUpon>WindowUserData.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\WindowStartup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
