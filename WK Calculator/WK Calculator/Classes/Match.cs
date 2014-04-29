@@ -15,6 +15,22 @@ namespace WK_Calculator
         public string TeamB { get; set; }
         public int TeamAScore { get; set; }
         public int TeamBScore { get; set; }
+        public Uitslag Winnaar
+        {
+            get 
+            {
+                if (TeamAScore > TeamBScore)
+                    return Uitslag.TeamA;
+
+                else if (TeamBScore > TeamAScore)
+                    return Uitslag.TeamB;
+
+                else
+                    return Uitslag.Gelijk;
+            }
+        }
+        
+
 
         public Match(string teamA, string teamB,string datum)
         {
@@ -36,5 +52,12 @@ namespace WK_Calculator
         {
             return TeamA + " - " + TeamB + "(" + Datum.ToString(@"dd/MM/yyyy") + ")";
         }
+    }
+
+    public enum Uitslag
+    {
+        TeamA,
+        TeamB,
+        Gelijk
     }
 }

@@ -13,10 +13,5 @@ namespace WK_Calculator
         public string Name { get; set; }
         public int Points { get; set; }
         public Schema SpeelSchema = new Schema();
-
-        public User()
-        {
-            SpeelSchema = Data.SpeelSchema;
-        }
     }
 }

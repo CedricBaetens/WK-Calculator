@@ -60,9 +60,9 @@ namespace WK_Calculator
         private void btnShowPoints_Click(object sender, RoutedEventArgs e)
         {
             wP = new WindowPoints();
-            this.Hide();
+            //this.Hide();
             wP.ShowDialog();
-            this.Show();
+            //this.Show();
         }
     }
 }
