@@ -1,21 +1,16 @@
 ﻿<Window x:Class="WK_Calculator.WindowUserData"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WK Calculator" Height="400" Width="800">
-    <Grid Loaded="Grid_Loaded">
+        Title="Spelers Data" Height="400" Width="800">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        
-        <ListBox Margin="5" Grid.Column="0" Name="lbUsers" ItemsSource="{Binding}" SelectionChanged="lbUsers_SelectionChanged">
+        <ListBox Margin="5" Grid.Column="0" Name="lbUsers" ItemsSource="{Binding}" SelectionChanged="lbUsers_SelectionChanged"  >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -23,7 +18,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Margin="5" Grid.Column="1" Name="lbGroepen" ItemsSource="{Binding}" SelectionChanged="lbGroepen_SelectionChanged">
+        <ListBox Margin="5" Grid.Column="1" Name="lbSchema" ItemsSource="{Binding}" SelectionChanged="lbSchema_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -39,12 +34,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Grid Grid.Column="4" Name="grMatchData">
+        <Grid Grid.Column="3" Name="grMatchData">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -53,11 +48,8 @@
             <TextBlock Margin="10" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamA}" TextAlignment="Center"/>
             <TextBlock Margin="10" Grid.Column="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamB}" TextAlignment="Center"/>
 
-            <TextBox Margin="10" Grid.Row="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamAScore}" TextAlignment="Center"/>
-            <TextBox Margin="10" Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamBScore}" TextAlignment="Center"/>
+            <TextBox Margin="10" Grid.Row="1" Name="tbTeamAScore" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamAScore}" TextAlignment="Center"/>
+            <TextBox Margin="10" Grid.Row="1" Name="tbTeamBScore" Grid.Column="1" Text="{Binding ElementName=lbMatches,Path=SelectedItem.TeamBScore}" TextAlignment="Center"/>
         </Grid>
-
-        <Button Margin="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Click="btnCalculatePoints_Click" Name="btnCalculatePoints">Bereken Punten</Button>
-
     </Grid>
 </Window>

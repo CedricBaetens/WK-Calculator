@@ -9,7 +9,7 @@ namespace WK_Calculator
 {
     public abstract class Data
     {
-       public static ObservableCollection<User> users = new ObservableCollection<User>();
+       public static ObservableCollection<User> Users = new ObservableCollection<User>();
        public static Schema SpeelSchema = new Schema();
     }
 }

@@ -23,29 +23,29 @@ namespace WK_Calculator
         {
             InitializeComponent();
 
-            grMatchData.Visibility = Visibility.Hidden;
             lbMatches.Visibility = Visibility.Hidden;
+            grMatchData.Visibility = Visibility.Hidden;
+            
         }
 
         private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             lbMatches.DataContext = ((Group)lbSchema.SelectedItem).Matchen;
 
-            
-            if (lbSchema.SelectedIndex > -1)
-                lbMatches.Visibility = Visibility.Visible;
-            else
-                lbMatches.Visibility = Visibility.Hidden;
+
+            lbMatches.Visibility = Visibility.Visible;
+            grMatchData.Visibility = Visibility.Hidden;
         }
 
         private void lbMatches_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lbMatches.SelectedIndex > -1)
-                grMatchData.Visibility = Visibility.Visible;
-            else
-                grMatchData.Visibility = Visibility.Hidden;
+            lbMatches.Visibility = Visibility.Visible;
+            grMatchData.Visibility = Visibility.Visible;
         }
 
-        
+        private void tb_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).Clear();
+        }        
     }
 }

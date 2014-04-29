@@ -64,15 +64,22 @@
     <Compile Include="Windows\WindowMainData.xaml.cs">
       <DependentUpon>WindowMainData.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WindowStartup.xaml.cs">
-      <DependentUpon>WindowStartup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Windows\WindowPoints.xaml.cs">
+      <DependentUpon>WindowPoints.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WindowUserData.xaml.cs">
+      <DependentUpon>WindowUserData.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\WindowMainData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\WindowUserData.xaml">
+    <Page Include="Windows\WindowPoints.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WindowStartup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -80,11 +87,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\WindowUserData.xaml.cs">
-      <DependentUpon>WindowUserData.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Windows\WindowStartup.xaml.cs">
+      <DependentUpon>WindowStartup.xaml</DependentUpon>
     </Compile>
-    <Page Include="Windows\WindowStartup.xaml">
+    <Page Include="Windows\WindowUserData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

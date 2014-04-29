@@ -21,6 +21,7 @@ namespace WK_Calculator
     {
         WindowMainData wMd;
         WindowUserData wUd;
+        WindowPoints wP;
 
         public WindowStartup()
         {
@@ -29,15 +30,17 @@ namespace WK_Calculator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Data.users.Add(new User() { Name = "Cedric"});
-            Data.users.Add(new User() { Name = "Patrik" });
-            Data.users.Add(new User() { Name = "Ingrid" });
+            Data.Users.Add(new User() { Name = "Cedric"});
+            Data.Users.Add(new User() { Name = "Patrik" });
+            Data.Users.Add(new User() { Name = "Ingrid" });
         }
 
         private void btnMainData_Click(object sender, RoutedEventArgs e)
         {
             wMd = new WindowMainData();
+
             wMd.lbSchema.DataContext = Data.SpeelSchema.Groups;
+
             this.Hide();
             wMd.ShowDialog();
             this.Show();
@@ -46,7 +49,20 @@ namespace WK_Calculator
         private void btnEnterPlayerData_Click(object sender, RoutedEventArgs e)
         {
             wUd = new WindowUserData();
+
+            wUd.lbUsers.DataContext = Data.Users;
+
+            this.Hide();
             wUd.ShowDialog();
+            this.Show();
+        }
+
+        private void btnShowPoints_Click(object sender, RoutedEventArgs e)
+        {
+            wP = new WindowPoints();
+            this.Hide();
+            wP.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -21,6 +21,9 @@ namespace WK_Calculator
             TeamA = teamA;
             TeamB = teamB;
 
+            TeamAScore = -1;
+            TeamBScore = -1;
+
             // Datum
             var date = datum.Split('-');
             if (date[1]=="juni")
