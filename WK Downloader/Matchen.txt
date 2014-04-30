@@ -1,0 +1,77 @@
+﻿Groep A:
+12 juni, Sao Paulo (22u Belgische tijd) Brazilië-Kroatië
+13 juni, Natal (18u) Mexico-Kameroen
+17 juni, Fortaleza (21u) Brazilië - Mexico
+18 juni, Manaus (21u) Kameroen - Kroatië
+23 juni, Brasilia (22u) Kameroen - Brazilië
+23 juni, Recife (22u) Kroatië - Mexico
+Groep B:
+13 juni, Salvador (22u) Spanje - Nederland
+14 juni, Cuiaba (00u) Chili - Australië
+18 juni, Porto Alegre (18u) Spanje - Chili
+19 juni, Rio de Janeiro (00u) Australië - Nederland
+23 juni, Curitiba (18u) Nederland - Chili
+23 juni, Sao Paulo (18u) Australië - Spanje
+Groep C:
+14 juni, Belo Horizonte (18u) Colombia - Griekenland
+15 juni, Recife (00u) Ivoorkust - Japan
+19 juni, Brasilia (18u) Colombia - Ivoorkust
+20 juni, Natal (00u) Japan - Griekenland
+24 juni, Cuiaba (22u) Griekenland - Ivoorkust
+24 juni, Fortaleza (22u) Japan - Colombia
+Groep D:
+14 juni, Fortaleza (21u) Uruguay - Costa Rica
+15 juni, Manaus (03u) Engeland - Italië
+19 juni, Sao Paulo (21u) Uruguay - Engeland
+20 juni, Recife (18u) Italië - Costa Rica
+24 juni, Natal (18u) Italië - Uruguay
+24 juni, Belo Horizonte (18u) Costa Rica - Engeland
+Groep E:
+15 juni, Brasilia (18u) Zwitserland - Ecuador
+15 juni, Porto Alegre (21u) Frankrijk - Honduras
+20 juni, Salvador (22u) Zwitserland - Frankrijk
+21 juni, Curitiba (00u) Honduras - Ecuador
+25 juni, Manaus (22u) Ecuador - Frankrijk
+25 juni, Rio de Janeiro (22u) Honduras - Zwitserland
+Groep F:
+16 juni, Rio de Janeiro (00u) Argentinië - Bosnië-Herzegovina
+16 juni, Curitiba (21u) Iran - Nigeria
+21 juni, Belo Horizonte (18u) Argentinië - Iran
+22 juni, Cuiaba (00u) Nigeria- Bosnië-Herzegovina
+25 juni, Porto Alegre (18u) Bosnië-Herzegovina - Iran
+25 juni, Salvador (19u) Nigeria - Argentinië
+Groep G:
+16 juni, Salvador (19u) Duitsland - Portugal
+17 juni, Natal (00u) Ghana - VS
+21 juni, Fortaleza (21u) Duitsland - Ghana
+22 juni, Manaus (21u) VS - Portugal
+26 juni, Recife (18u) Portugal - Ghana
+26 juni, Brasilia (18u) VS - Duitsland
+Groep H:
+17 juni, Belo Horizonte (18u) België - Algerije
+18 juni, Cuiaba (00u) Rusland - Zuid-Korea
+22 juni, Porto Alegre (18u) Zuid-Korea - Algerije
+23 juni, Rio de Janeiro (00u) België - Rusland
+26 juni, Sao Paulo (22u) Zuid-Korea - België
+26 juni, Curitiba (22u) Algerije - Rusland
+1/8e finales:
+28 juni, Belo Horizonte (18u) 1A-2B
+28 juni, Rio de Janeiro (22u) 1C-2D
+29 juni, Fortaleza (18u) 1B-2A
+29 juni, Recife (22u) 1D-2C
+30 juni, Brasilia (18u) 1E-2F
+30 juni, Porto Alegre (22u) 1G-2H
+1 juli, Sao Paulo (18u) 1F-2E
+1 juli, Salvador (22u) 1H-2G
+Kwartfinales:
+4 juli, Fortaleza (22u) W49-W50
+4 juli, Rio de Janeiro (18u) W53-W54
+5 juli, Salvador (22u) W51-W52
+5 juli, Brasilia (18u) W55-W56
+Halve finales:
+8 juli, Belo Horizonte (22u) W57-W58
+9 juli, Sao Paulo (22u) W59-W60
+Kleine finale:
+12 juli, Brasilia (22u) V61-V62
+Finale:
+13 juli, Rio de Janeiro (21u) W61-W62

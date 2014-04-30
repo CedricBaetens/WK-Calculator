@@ -76,6 +76,9 @@
     <Compile Include="Classes\Group.cs" />
     <Compile Include="Classes\Match.cs" />
     <Compile Include="Classes\Schema.cs" />
+    <Compile Include="Excels\XLS.cs" />
+    <Compile Include="Excels\XLSScores.cs" />
+    <Compile Include="Excels\XLSUser.cs" />
     <Compile Include="Windows\WindowMainData.xaml.cs">
       <DependentUpon>WindowMainData.xaml</DependentUpon>
     </Compile>
