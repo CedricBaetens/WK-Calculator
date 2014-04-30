@@ -51,7 +51,6 @@
         </Grid>
         <Grid Grid.Row="1" Name="grData">
             <Grid.RowDefinitions>
-                <RowDefinition/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             
