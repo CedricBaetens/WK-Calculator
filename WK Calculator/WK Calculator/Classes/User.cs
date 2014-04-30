@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Net.Mail;
 
 namespace WK_Calculator
 {
@@ -13,6 +14,9 @@ namespace WK_Calculator
     {
         public string Name { get; set; }
         public int Points { get; set; }
+        public MailAddress Email = new MailAddress("baellonmusic@gmail.com", "Cedric Baetens");
+        public string xlsLocation { get; set; }
+
         public Schema SpeelSchema = new Schema();
 
         public ObservableCollection<string> Last4_VoorWk = new ObservableCollection<string>() { "A", "B", "C", "D" };

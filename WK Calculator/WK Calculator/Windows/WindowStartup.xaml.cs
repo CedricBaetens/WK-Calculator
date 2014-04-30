@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Net.Mail;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
 
 namespace WK_Calculator
 {
@@ -22,6 +11,8 @@ namespace WK_Calculator
     /// </summary>
     public partial class WindowStartup : Window
     {
+        FileInfo[] files;
+
         bool error = false;
 
         WindowMainData wMd;
@@ -38,9 +29,9 @@ namespace WK_Calculator
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Gebruikers aanmaken
-            var files = new DirectoryInfo(dataFolder + @"/Spelers").GetFiles();
+            files = new DirectoryInfo(dataFolder + @"/Spelers").GetFiles();
             foreach (var file in files)
-                Data.Users.Add(new User() { Name = file.Name.Replace(".xls","") });
+                Data.Users.Add(new User() { Name = file.Name.Replace(".xls",""),xlsLocation = file.FullName });
 
             // Read Scores
             XLSScores.Init();
@@ -90,6 +81,45 @@ namespace WK_Calculator
             if (error == false)
             {
                 XLSScores.WriteXLS();
+
+
+                SentMail(Data.Users[1].Email, Data.Users[1].xlsLocation);
+            }
+        }
+
+        private void SentMail(MailAddress DestinationAddress, string filePath)
+        {
+            var fromAddress = new MailAddress("baellonmusic@gmail.com", "Cedric Baetens");
+            var toAddress = DestinationAddress;
+
+            const string fromPassword = "123cb456";
+            const string subject = "Subject";
+            const string body = "Body";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            var message = new MailMessage(fromAddress.Address, toAddress.Address, subject, body);
+
+            System.Net.Mail.Attachment attachment;
+            attachment = new System.Net.Mail.Attachment(filePath);
+            message.Attachments.Add(attachment);
+
+           // smtp.Send(message);
+            smtp.SendAsync(message,null);
+        }
+
+        private void btnMailXLS_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var user in Data.Users)
+            {
+                SentMail(user.Email, user.xlsLocation);
             }
         }
     }

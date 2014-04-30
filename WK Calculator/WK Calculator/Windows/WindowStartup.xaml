@@ -6,7 +6,8 @@
         <StackPanel>
             <Button Name="btnMainData" Margin="10" Click="btnMainData_Click" >Hoofd Data</Button>
             <Button Name="btnEnterPlayerData" Margin="10" Click="btnEnterPlayerData_Click">Spelers Data</Button>
-            <Button Name="btnShowPoints" Margin="10" Click="btnShowPoints_Click" >Toon Punten</Button>           
+            <Button Name="btnShowPoints" Margin="10" Click="btnShowPoints_Click" >Toon Punten</Button>
+            <Button Name="btnMailXLS" Margin="10" Click="btnMailXLS_Click">Verstuur Excels</Button>
         </StackPanel>      
     </Grid>
 </Window>
