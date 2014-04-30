@@ -75,6 +75,7 @@
     <Compile Include="Classes\Data.cs" />
     <Compile Include="Classes\Group.cs" />
     <Compile Include="Classes\Match.cs" />
+    <Compile Include="Classes\Questions.cs" />
     <Compile Include="Classes\Schema.cs" />
     <Compile Include="Excels\XLS.cs" />
     <Compile Include="Excels\XLSScores.cs" />

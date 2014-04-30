@@ -19,9 +19,14 @@ namespace WK_Calculator
 
         public Schema SpeelSchema = new Schema();
 
-        public ObservableCollection<string> Last4_VoorWk = new ObservableCollection<string>() { "A", "B", "C", "D" };
-        public ObservableCollection<string> Last4_Voor8SteFinale = new ObservableCollection<string>() { "A", "B", "C", "D" };
-        public ObservableCollection<string> Last4_Voor4DeFinale = new ObservableCollection<string>() { "A", "B", "C", "D" };
-        public ObservableCollection<string> Last4_VoorVoorHalveFinale = new ObservableCollection<string>() { "A", "B", "C", "D" };
+        public ObservableCollection<Question> Questions = new ObservableCollection<Question>();
+
+        public User()
+        {
+             Questions.Add(new Question() { Name = "Laatste 4 - Voor WK"});
+             Questions.Add(new Question() { Name = "Laatste 4 - Na Groepsfase" });
+             Questions.Add(new Question() { Name = "Laatste 4 - Na 8ste Finale" });
+             Questions.Add(new Question() { Name = "Laatste 4 - Na Kwart Finale" });
+        }
     }
 }

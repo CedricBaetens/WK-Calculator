@@ -43,7 +43,7 @@ namespace WK_Calculator
                 XLSUser.Init(user);
                 XLSUser.ReadXLS();
             }
-           
+            int a = 0;
         }
 
         private void btnMainData_Click(object sender, RoutedEventArgs e)
@@ -81,9 +81,6 @@ namespace WK_Calculator
             if (error == false)
             {
                 XLSScores.WriteXLS();
-
-
-                SentMail(Data.Users[1].Email, Data.Users[1].xlsLocation);
             }
         }
 
@@ -93,8 +90,8 @@ namespace WK_Calculator
             var toAddress = DestinationAddress;
 
             const string fromPassword = "123cb456";
-            const string subject = "Subject";
-            const string body = "Body";
+            const string subject = "WK Excel File";
+            const string body = "Hier uw WK Excel File!";
 
             var smtp = new SmtpClient
             {
@@ -121,6 +118,7 @@ namespace WK_Calculator
             {
                 SentMail(user.Email, user.xlsLocation);
             }
+            MessageBox.Show("Excel Files Sent!");
         }
     }
 }

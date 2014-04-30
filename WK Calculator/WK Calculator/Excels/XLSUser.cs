@@ -21,40 +21,72 @@ namespace WK_Calculator
 
         public static void ReadXLS()
         {
+            #region Matchen
+            
             int groupIndex = 0;
             int matchIndex = 0;
-
-            for (int row = 1; row < Sheet.LastRowNum + 1; row++)
+            for (int row = 1; row < 77; row++)
             {
-                if (Sheet.GetRow(row).GetCell(1) != null)
+                if (Sheet.GetRow(row) != null)
                 {
-                    if (Sheet.GetRow(row).GetCell(1).StringCellValue != "" && Sheet.GetRow(row).GetCell(1).StringCellValue != "/")
+                    if (Sheet.GetRow(row).GetCell(1) != null)
                     {
-                        string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
-                        var valueSplit = val.Split('-');
-
-                        int oldScoreA = user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore;
-                        int oldScoreB = user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore;
-
-                        int newScoreA = Convert.ToInt32(valueSplit[0]);
-                        int newScoreB = Convert.ToInt32(valueSplit[1]);
-
-                        if (oldScoreA == -1 && oldScoreB == -1)
+                        if (Sheet.GetRow(row).GetCell(1).StringCellValue != "" && Sheet.GetRow(row).GetCell(1).StringCellValue != "/")
                         {
-                            user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore = Convert.ToInt32(valueSplit[0]);
-                            user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore = Convert.ToInt32(valueSplit[1]);
+                            string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                            var valueSplit = val.Split('-');
+
+                            int oldScoreA = user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore;
+                            int oldScoreB = user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore;
+
+                            int newScoreA = Convert.ToInt32(valueSplit[0]);
+                            int newScoreB = Convert.ToInt32(valueSplit[1]);
+
+                            if (oldScoreA == -1 && oldScoreB == -1)
+                            {
+                                user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore = Convert.ToInt32(valueSplit[0]);
+                                user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore = Convert.ToInt32(valueSplit[1]);
+                            }
+
+                            matchIndex++;
                         }
-                     
-                        matchIndex++;
-                    }
-                    else
-                    {
-                        groupIndex++;
-                        matchIndex = 0;
+                        else
+                        {
+                            groupIndex++;
+                            matchIndex = 0;
+                        }
                     }
                 }
-                
             }
-        }
+            #endregion
+            #region Vragen Laatste 4
+
+            int antwoordIndex = 0;
+            int vraagIndex = 0;
+
+            for (int row = 78; row < 99; row++)
+            {
+                if (Sheet.GetRow(row) != null)
+                {
+                    if (Sheet.GetRow(row).GetCell(1) != null)
+                    {
+                        string value = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                        if (Sheet.GetRow(row).GetCell(1).StringCellValue != "")
+                        {
+                            string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                            user.Questions[vraagIndex].Antwoorden[antwoordIndex] = val;
+                            antwoordIndex++;
+                        }
+                    }
+                }
+                else
+                {
+                    antwoordIndex = 0;
+                    vraagIndex++;
+                }   
+            }
+            
+            #endregion
+        }    
     }
 }
