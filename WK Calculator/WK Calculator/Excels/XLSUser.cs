@@ -63,8 +63,7 @@ namespace WK_Calculator
 
             int antwoordIndex = 0;
             int vraagIndex = 0;
-
-            for (int row = 78; row < 99; row++)
+            for (int row = 78; row < 92; row++)
             {
                 if (Sheet.GetRow(row) != null)
                 {
@@ -74,7 +73,11 @@ namespace WK_Calculator
                         if (Sheet.GetRow(row).GetCell(1).StringCellValue != "")
                         {
                             string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
-                            user.Questions[vraagIndex].Antwoorden[antwoordIndex] = val;
+                            string questionVal = user.Questions[vraagIndex].Antwoorden[antwoordIndex];
+                            if (questionVal == "" && val != "/")
+                            {
+                                user.Questions[vraagIndex].Antwoorden[antwoordIndex] = val;
+                            }
                             antwoordIndex++;
                         }
                     }

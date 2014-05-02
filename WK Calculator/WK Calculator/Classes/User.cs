@@ -25,7 +25,6 @@ namespace WK_Calculator
         {
              Questions.Add(new Question() { Name = "Laatste 4 - Voor WK"});
              Questions.Add(new Question() { Name = "Laatste 4 - Na Groepsfase" });
-             Questions.Add(new Question() { Name = "Laatste 4 - Na 8ste Finale" });
              Questions.Add(new Question() { Name = "Laatste 4 - Na Kwart Finale" });
         }
     }

@@ -8,17 +8,19 @@ using NPOI.HSSF.UserModel;
 
 namespace WK_Calculator
 {
-    abstract class XLSScores : XLS
+    abstract class XLSDataSpelers : XLS
     {
         public static void Init()
         {
-            File = new FileStream(dataFolder + @"\Scores.xls", FileMode.Open, FileAccess.Read);           
+            File = new FileStream(dataFolder + @"\DataSpelers.xls", FileMode.Open, FileAccess.Read);           
             Workbook = new HSSFWorkbook(File);
             Sheet = Workbook.GetSheet("Users");
         }
 
         public static void ReadXLS()
         {
+            #region Scores
+
             Init();
             // Elke gebruiker
             foreach (var user in Data.Users)
@@ -30,9 +32,11 @@ namespace WK_Calculator
                     string val = Sheet.GetRow(0).GetCell(col).StringCellValue;
                     if (Sheet.GetRow(0).GetCell(col).StringCellValue == user.Name)
                     {
+                        #region Matchen
+                        
                         int groupIndex = 0;
                         int matchIndex = 0;
-                        for (int row = 1; row < Sheet.LastRowNum + 1; row++)
+                        for (int row = 1; row < 78; row++)
                         {
                             if (Sheet.GetRow(row).GetCell(col) != null)
                             {
@@ -52,9 +56,39 @@ namespace WK_Calculator
                                 }
                             }
                         }
+
+                        #endregion
+                        #region Vragen Laatste 4
+
+                        int antwoordIndex = 0;
+                        int vraagIndex = 0;
+                        for (int row = 79; row < 93; row++)
+                        {
+                            if (Sheet.GetRow(row) != null)
+                            {
+                                if (Sheet.GetRow(row).GetCell(col) != null)
+                                {
+                                    string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                    if (value != "/")
+                                    {
+                                        user.Questions[vraagIndex].Antwoorden[antwoordIndex] = value;
+                                    }                            
+                                    antwoordIndex++;
+                                }
+                            }
+                            else
+                            {
+                                antwoordIndex = 0;
+                                vraagIndex++;
+                            }  
+                        }
+
+                        #endregion
                     }
                 }
             }
+
+            #endregion
         }
         public static void WriteXLS()
         {
@@ -69,9 +103,11 @@ namespace WK_Calculator
                     string val = Sheet.GetRow(0).GetCell(col).StringCellValue;
                     if (val == user.Name)
                     {
+                        #region Matchen
+
                         int groupIndex = 0;
                         int matchIndex = 0;
-                        for (int row = 1; row < Sheet.LastRowNum + 1; row++)
+                        for (int row = 1; row < 78; row++)
                         {
                             if (Sheet.GetRow(row).GetCell(col) != null)
                             {
@@ -93,10 +129,40 @@ namespace WK_Calculator
                                 }
                             }
                         }
+
+                        #endregion
+                        #region Vragen Laatste 4
+
+                        int antwoordIndex = 0;
+                        int vraagIndex = 0;
+
+                        for (int row = 79; row < 93; row++)
+                        {
+                            if (Sheet.GetRow(row) != null)
+                            {
+                                string valExcel = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                string valProg = user.Questions[vraagIndex].Antwoorden[antwoordIndex];
+                                if (valExcel != "")
+                                {
+                                    if (valExcel == "/" && valProg != "")
+                                    {
+                                        Sheet.GetRow(row).GetCell(col).SetCellValue(user.Questions[vraagIndex].Antwoorden[antwoordIndex]);
+                                    }
+                                    antwoordIndex++;
+                                }
+                            }
+                            else
+                            {
+                                antwoordIndex = 0;
+                                vraagIndex++;
+                            }
+                        }
+
+                        #endregion
                     }
                 }
             }
-            File = new FileStream(dataFolder + @"\Scores.xls", FileMode.Create);
+            File = new FileStream(dataFolder + @"\DataSpelers.xls", FileMode.Create);
             Workbook.Write(File);
             File.Close();
         }

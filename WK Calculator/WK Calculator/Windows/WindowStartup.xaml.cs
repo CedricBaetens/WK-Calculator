@@ -34,9 +34,10 @@ namespace WK_Calculator
                 Data.Users.Add(new User() { Name = file.Name.Replace(".xls",""),xlsLocation = file.FullName });
 
             // Read Scores
-            XLSScores.Init();
-            XLSScores.ReadXLS();
+            XLSDataSpelers.Init();
+            XLSDataSpelers.ReadXLS();
 
+            int b = 0;
             // Read user XLS
             foreach (var user in Data.Users)
             {
@@ -80,7 +81,7 @@ namespace WK_Calculator
         {
             if (error == false)
             {
-                XLSScores.WriteXLS();
+                XLSDataSpelers.WriteXLS();
             }
         }
 
