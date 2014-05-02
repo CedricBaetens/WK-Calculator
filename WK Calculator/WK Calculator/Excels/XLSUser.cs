@@ -63,7 +63,7 @@ namespace WK_Calculator
 
             int antwoordIndex = 0;
             int vraagIndex = 0;
-            for (int row = 78; row < 92; row++)
+            for (int row = 78; row < 132; row++)
             {
                 if (Sheet.GetRow(row) != null)
                 {

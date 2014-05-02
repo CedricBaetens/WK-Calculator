@@ -10,6 +10,6 @@ namespace WK_Calculator
     public class Question
     {
         public string Name { get; set; }
-        public ObservableCollection<string> Antwoorden = new ObservableCollection<string>() { "", "", "", "" };      
+        public ObservableCollection<string> Antwoorden = new ObservableCollection<string>() { "", "", "", "" };
     }
 }

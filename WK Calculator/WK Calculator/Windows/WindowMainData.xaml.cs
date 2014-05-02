@@ -27,8 +27,9 @@ namespace WK_Calculator
             lbMatches.Visibility = Visibility.Hidden;
             grMatchData.Visibility = Visibility.Hidden;
 
-            //
-            grData.DataContext = Data.Last4;
+            // Laatste 4 
+            grData.DataContext = Data.Questions[0].Antwoorden;
+
         }
 
         private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)

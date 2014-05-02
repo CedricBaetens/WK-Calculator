@@ -26,14 +26,23 @@ namespace WK_Calculator
             lbSchema.Visibility = Visibility.Hidden;
             lbMatches.Visibility = Visibility.Hidden;
             grMatchData.Visibility = Visibility.Hidden;
+            grQuestionAnswers.Visibility = Visibility.Hidden;
+            lbQuestion.Visibility = Visibility.Hidden;
         }
 
+        // Grid1
         private void lbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // Grid 1
             lbSchema.DataContext = ((User)lbUsers.SelectedItem).SpeelSchema.Groups;
             lbSchema.Visibility = Visibility.Visible;
             lbMatches.Visibility = Visibility.Hidden;
             grMatchData.Visibility = Visibility.Hidden;
+
+            // Grid 2
+            lbQuestion.DataContext = ((User)lbUsers.SelectedItem).Questions;
+            lbQuestion.Visibility = Visibility.Visible;
+            grQuestionAnswers.Visibility = Visibility.Hidden;
         }
 
         private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,6 +59,13 @@ namespace WK_Calculator
             lbSchema.Visibility = Visibility.Visible;
             lbMatches.Visibility = Visibility.Visible;
             grMatchData.Visibility = Visibility.Visible;
+        }
+               
+        // Grid 2
+        private void lbQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            grQuestionAnswers.DataContext = ((Question)lbQuestion.SelectedItem).Antwoorden;
+            grQuestionAnswers.Visibility = Visibility.Visible;
         }
 
         private void tb_GotFocus(object sender, RoutedEventArgs e)

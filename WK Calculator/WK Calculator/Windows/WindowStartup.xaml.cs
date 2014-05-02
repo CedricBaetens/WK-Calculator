@@ -28,6 +28,9 @@ namespace WK_Calculator
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Data initialiseren
+            Data.Init();
+
             // Gebruikers aanmaken
             files = new DirectoryInfo(dataFolder + @"/Spelers").GetFiles();
             foreach (var file in files)
@@ -45,6 +48,12 @@ namespace WK_Calculator
                 XLSUser.ReadXLS();
             }
             int a = 0;
+
+            // Read main XLS
+            XLSMainData.Init();
+            XLSMainData.ReadXLS();
+
+            int c = 0;
         }
 
         private void btnMainData_Click(object sender, RoutedEventArgs e)

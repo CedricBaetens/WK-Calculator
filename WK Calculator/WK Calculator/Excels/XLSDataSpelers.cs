@@ -19,8 +19,6 @@ namespace WK_Calculator
 
         public static void ReadXLS()
         {
-            #region Scores
-
             Init();
             // Elke gebruiker
             foreach (var user in Data.Users)
@@ -62,7 +60,7 @@ namespace WK_Calculator
 
                         int antwoordIndex = 0;
                         int vraagIndex = 0;
-                        for (int row = 79; row < 93; row++)
+                        for (int row = 79; row < 133; row++)
                         {
                             if (Sheet.GetRow(row) != null)
                             {
@@ -87,8 +85,6 @@ namespace WK_Calculator
                     }
                 }
             }
-
-            #endregion
         }
         public static void WriteXLS()
         {
@@ -136,7 +132,7 @@ namespace WK_Calculator
                         int antwoordIndex = 0;
                         int vraagIndex = 0;
 
-                        for (int row = 79; row < 93; row++)
+                        for (int row = 79; row < 133; row++)
                         {
                             if (Sheet.GetRow(row) != null)
                             {
