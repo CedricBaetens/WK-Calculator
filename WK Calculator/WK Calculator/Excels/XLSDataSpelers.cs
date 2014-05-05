@@ -60,18 +60,32 @@ namespace WK_Calculator
 
                         int antwoordIndex = 0;
                         int vraagIndex = 0;
-                        for (int row = 79; row < 133; row++)
+                        for (int row = 79; row < 140; row++)
                         {
                             if (Sheet.GetRow(row) != null)
                             {
                                 if (Sheet.GetRow(row).GetCell(col) != null)
                                 {
-                                    string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
-                                    if (value != "/")
+                                    // laatste 4 + groepswinnaars
+                                    if (row < 134)
                                     {
-                                        user.Questions[vraagIndex].Antwoorden[antwoordIndex] = value;
-                                    }                            
+                                        string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                        if (value != "/")
+                                        {
+                                            ((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex] = value;
+                                        }
+                                    }
+                                    // Topscoorder + schiftingsvragen
+                                    else
+                                    {
+                                        string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                        if (value != "/")
+                                        {
+                                            ((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord = value;
+                                        }
+                                    }
                                     antwoordIndex++;
+                                    
                                 }
                             }
                             else
@@ -132,20 +146,40 @@ namespace WK_Calculator
                         int antwoordIndex = 0;
                         int vraagIndex = 0;
 
-                        for (int row = 79; row < 133; row++)
+                        for (int row = 79; row < 140; row++)
                         {
                             if (Sheet.GetRow(row) != null)
                             {
-                                string valExcel = Sheet.GetRow(row).GetCell(col).StringCellValue;
-                                string valProg = user.Questions[vraagIndex].Antwoorden[antwoordIndex];
-                                if (valExcel != "")
+                                // Laatste 4 + groepswinnaars
+                                if (row < 134)
                                 {
-                                    if (valExcel == "/" && valProg != "")
+                                    string valExcel = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                    string valProg = ((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex];
+                                    if (valExcel != "")
                                     {
-                                        Sheet.GetRow(row).GetCell(col).SetCellValue(user.Questions[vraagIndex].Antwoorden[antwoordIndex]);
+                                        if (valExcel == "/" && valProg != "")
+                                        {
+                                            Sheet.GetRow(row).GetCell(col).SetCellValue(((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex]);
+                                        }
                                     }
-                                    antwoordIndex++;
                                 }
+                                else
+                                {
+                                    if (Sheet.GetRow(row).GetCell(1) != null)
+                                    {
+                                        string valExcel = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                        string valProg = ((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord;
+                                        if (valExcel != "")
+                                        {
+                                            if (valExcel == "/" && valProg != "")
+                                            {
+                                                Sheet.GetRow(row).GetCell(col).SetCellValue(((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord);
+                                            }
+                                        }
+                                    }
+                                }
+                                antwoordIndex++;
+                                
                             }
                             else
                             {

@@ -58,7 +58,7 @@ namespace WK_Calculator
                         string value = Sheet.GetRow(row).GetCell(1).StringCellValue;
                         if (value != "/")
                         {
-                            Data.Questions[vraagIndex].Antwoorden[antwoordIndex] = value;
+                            ((Question4Answers)Data.Questions[vraagIndex]).Antwoorden[antwoordIndex] = value;
                         }
                         antwoordIndex++;
                     }

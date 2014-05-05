@@ -64,7 +64,7 @@ namespace WK_Calculator
         // Grid 2
         private void lbQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            grQuestionAnswers.DataContext = ((Question)lbQuestion.SelectedItem).Antwoorden;
+            grQuestionAnswers.DataContext = ((Question4Answers)lbQuestion.SelectedItem).Antwoorden;
             grQuestionAnswers.Visibility = Visibility.Visible;
         }
 

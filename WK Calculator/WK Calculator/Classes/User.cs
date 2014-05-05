@@ -23,17 +23,20 @@ namespace WK_Calculator
 
         public User()
         {
-             Questions.Add(new Question() { Name = "Laatste 4 - Voor WK"});
-             Questions.Add(new Question() { Name = "Laatste 4 - Na Groepsfase" });
-             Questions.Add(new Question() { Name = "Laatste 4 - Na Kwart Finale" });
-             Questions.Add(new Question() { Name = "Stand Groep A" });
-             Questions.Add(new Question() { Name = "Stand Groep B" });
-             Questions.Add(new Question() { Name = "Stand Groep C" });
-             Questions.Add(new Question() { Name = "Stand Groep D" });
-             Questions.Add(new Question() { Name = "Stand Groep E" });
-             Questions.Add(new Question() { Name = "Stand Groep F" });
-             Questions.Add(new Question() { Name = "Stand Groep G" });
-             Questions.Add(new Question() { Name = "Stand Groep H" });
+             Questions.Add(new Question4Answers() { Name = "Laatste 4 - Voor WK"});
+             Questions.Add(new Question4Answers() { Name = "Laatste 4 - Na Groepsfase" });
+             Questions.Add(new Question4Answers() { Name = "Laatste 4 - Na Kwart Finale" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep A" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep B" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep C" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep D" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep E" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep F" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep G" });
+             Questions.Add(new Question4Answers() { Name = "Stand Groep H" });
+             Questions.Add(new QuestionSingleAnswer() { Name = "Top Scoorder" });
+             Questions.Add(new QuestionSingleAnswer() { Name = "Doelpunten Topscoorder" });
+             Questions.Add(new QuestionSingleAnswer() { Name = "Minute scoren in finale" });
         }
     }
 }

@@ -28,7 +28,7 @@ namespace WK_Calculator
             grMatchData.Visibility = Visibility.Hidden;
 
             // Laatste 4 
-            grData.DataContext = Data.Questions[0].Antwoorden;
+            grData.DataContext = ((Question4Answers)Data.Questions[0]).Antwoorden;
 
         }
 

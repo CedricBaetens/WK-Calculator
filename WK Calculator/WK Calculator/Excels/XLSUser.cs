@@ -59,11 +59,11 @@ namespace WK_Calculator
                 }
             }
             #endregion
-            #region Vragen Laatste 4
+            #region Vragen 
 
             int antwoordIndex = 0;
             int vraagIndex = 0;
-            for (int row = 78; row < 132; row++)
+            for (int row = 78; row < 138; row++)
             {
                 if (Sheet.GetRow(row) != null)
                 {
@@ -72,11 +72,28 @@ namespace WK_Calculator
                         string value = Sheet.GetRow(row).GetCell(1).StringCellValue;
                         if (Sheet.GetRow(row).GetCell(1).StringCellValue != "")
                         {
-                            string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
-                            string questionVal = user.Questions[vraagIndex].Antwoorden[antwoordIndex];
-                            if (questionVal == "" && val != "/")
+                            // Laatste 4 + groepsstand
+                            if (row < 133)
                             {
-                                user.Questions[vraagIndex].Antwoorden[antwoordIndex] = val;
+                                string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                                string questionVal = ((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex];
+
+                                if (questionVal == "" && val != "/")
+                                {
+                                    ((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex] = val;
+                                }
+                            }
+                            else
+                            {
+                                string val = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                                string questionVal = ((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord;
+
+                                if (questionVal == "" && val != "/")
+                                {
+                                    ((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord = val;
+                                    
+                                }
+                                vraagIndex++;
                             }
                             antwoordIndex++;
                         }
