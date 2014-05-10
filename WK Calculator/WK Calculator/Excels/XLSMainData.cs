@@ -49,18 +49,28 @@ namespace WK_Calculator
 
             int antwoordIndex = 0;
             int vraagIndex = 0;
-            for (int row = 79; row < 123; row++)
+            for (int row = 79; row < 130; row++)
             {
                 if (Sheet.GetRow(row) != null)
                 {
                     if (Sheet.GetRow(row).GetCell(1) != null)
                     {
-                        string value = Sheet.GetRow(row).GetCell(1).StringCellValue;
-                        if (value != "/")
+                        if (row < 123)
                         {
-                            ((Question4Answers)Data.Questions[vraagIndex]).Antwoorden[antwoordIndex] = value;
+                            string value = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                            if (value != "/")
+                            {
+                                ((Question4Answers)Data.Questions[vraagIndex]).Antwoorden[antwoordIndex] = value;
+                            }
+                            antwoordIndex++;
                         }
-                        antwoordIndex++;
+
+                        else
+                        {
+                            string value = Sheet.GetRow(row).GetCell(1).StringCellValue;
+                            ((QuestionSingleAnswer)Data.Questions[vraagIndex]).Antwoord = value;
+                        }
+                        
                     }
                 }
                 else

@@ -1,9 +1,14 @@
 ﻿<Window x:Class="WK_Calculator.WindowPoints"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Puntenscherm" Height="300" Width="300" Loaded="Window_Loaded_1">
+        Title="Puntenscherm" Height="300" Width="600" Loaded="Window_Loaded_1">
     <Grid>
-        <ListView Name="lvData" ItemsSource="{Binding}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Name="lvData" ItemsSource="{Binding}" SelectionChanged="lvData_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  DisplayMemberBinding="{Binding Name}">
@@ -16,6 +21,24 @@
                             <GridViewColumnHeader Tag="Points">Points</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        
+        <ListView Grid.Column="1" Name="lvLog" ItemsSource="{Binding}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header="Type" 
+              DisplayMemberBinding="{Binding Type}"  />
+                    <GridViewColumn Width="150" Header="Naam"  
+              DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Width="140" Header="Datum" 
+              DisplayMemberBinding="{Binding Date}" />
+                    <GridViewColumn Width="30" Header="GP" 
+              DisplayMemberBinding="{Binding PointsGained}" />
+                    <GridViewColumn Width="30" Header="TP" 
+              DisplayMemberBinding="{Binding PointsTotal}" />
                 </GridView>
             </ListView.View>
         </ListView>

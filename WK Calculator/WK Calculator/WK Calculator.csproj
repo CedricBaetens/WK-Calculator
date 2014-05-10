@@ -74,6 +74,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Data.cs" />
     <Compile Include="Classes\Group.cs" />
+    <Compile Include="Classes\Log.cs" />
     <Compile Include="Classes\Match.cs" />
     <Compile Include="Classes\Question4Answers.cs" />
     <Compile Include="Classes\Questions.cs" />

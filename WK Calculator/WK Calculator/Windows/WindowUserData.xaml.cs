@@ -26,7 +26,8 @@ namespace WK_Calculator
             lbSchema.Visibility = Visibility.Hidden;
             lbMatches.Visibility = Visibility.Hidden;
             grMatchData.Visibility = Visibility.Hidden;
-            grQuestionAnswers.Visibility = Visibility.Hidden;
+            grQuestionAnswersMultiple.Visibility = Visibility.Hidden;
+            grQuestionAnswersSingle.Visibility = Visibility.Hidden;
             lbQuestion.Visibility = Visibility.Hidden;
         }
 
@@ -42,7 +43,8 @@ namespace WK_Calculator
             // Grid 2
             lbQuestion.DataContext = ((User)lbUsers.SelectedItem).Questions;
             lbQuestion.Visibility = Visibility.Visible;
-            grQuestionAnswers.Visibility = Visibility.Hidden;
+            grQuestionAnswersMultiple.Visibility = Visibility.Hidden;
+            grQuestionAnswersSingle.Visibility = Visibility.Hidden;
         }
 
         private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -64,8 +66,21 @@ namespace WK_Calculator
         // Grid 2
         private void lbQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            grQuestionAnswers.DataContext = ((Question4Answers)lbQuestion.SelectedItem).Antwoorden;
-            grQuestionAnswers.Visibility = Visibility.Visible;
+            int index = lbQuestion.SelectedIndex;
+            if (index < 11 && index > -1)
+            {
+                grQuestionAnswersMultiple.DataContext = ((Question4Answers)lbQuestion.SelectedItem).Antwoorden;
+                grQuestionAnswersMultiple.Visibility = Visibility.Visible;
+                grQuestionAnswersSingle.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grQuestionAnswersSingle.DataContext = (QuestionSingleAnswer)lbQuestion.SelectedItem;
+                grQuestionAnswersMultiple.Visibility = Visibility.Hidden;
+                grQuestionAnswersSingle.Visibility = Visibility.Visible;
+            }
+
+            
         }
 
         private void tb_GotFocus(object sender, RoutedEventArgs e)

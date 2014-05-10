@@ -19,7 +19,7 @@ namespace WK_Calculator
         WindowUserData wUd;
         WindowPoints wP;
 
-        string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Downloader";
+        string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Calculator";
 
         public WindowStartup()
         {

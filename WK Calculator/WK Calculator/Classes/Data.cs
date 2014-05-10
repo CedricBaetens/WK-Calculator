@@ -24,6 +24,9 @@ namespace WK_Calculator
             Questions.Add(new Question4Answers() { Name = "Stand Groep F" });
             Questions.Add(new Question4Answers() { Name = "Stand Groep G" });
             Questions.Add(new Question4Answers() { Name = "Stand Groep H" });
+            Questions.Add(new QuestionSingleAnswer() { Name = "Top Scoorder" });
+            Questions.Add(new QuestionSingleAnswer() { Name = "Doelpunten Topscoorder" });
+            Questions.Add(new QuestionSingleAnswer() { Name = "Minute scoren in finale" });
         }
     }
 }

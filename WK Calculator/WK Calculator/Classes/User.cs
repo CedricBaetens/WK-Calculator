@@ -16,6 +16,7 @@ namespace WK_Calculator
         public int Points { get; set; }
         public MailAddress Email = new MailAddress("baellonmusic@gmail.com", "Cedric Baetens");
         public string xlsLocation { get; set; }
+        public List<Log> PointsLog = new List<Log>();
 
         public Schema SpeelSchema = new Schema();
 

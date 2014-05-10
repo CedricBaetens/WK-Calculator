@@ -17,7 +17,7 @@ namespace WK_Calculator
         public Schema()
         {
             Group groep;
-            string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Downloader";
+            string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Calculator";
 
             string[] lines = File.ReadAllLines(dataFolder + @"\Matchen.txt");
             for (int i = 0; i < lines.Length; i++)

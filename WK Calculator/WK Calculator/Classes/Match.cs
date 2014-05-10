@@ -52,9 +52,20 @@ namespace WK_Calculator
 
         public override string ToString()
         {
-            return TeamA + " - " + TeamB + "(" + Datum.ToString(@"dd/MM/yyyy") + ")";
+            return TeamA + " - " + TeamB + " (" + Datum.ToString(@"dd/MM/yyyy") + ")";
+        }
+
+        public string GetScore()
+        {
+            return string.Format("({0}-{1})",TeamAScore.ToString(),TeamBScore.ToString());
+        }
+
+        public string GetName()
+        {
+            return TeamA + " - " + TeamB;
         }
     }
+
 
     public enum Uitslag
     {

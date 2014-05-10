@@ -42,7 +42,10 @@ namespace WK_Calculator
                             int newScoreA = Convert.ToInt32(valueSplit[0]);
                             int newScoreB = Convert.ToInt32(valueSplit[1]);
 
-                            if (oldScoreA == -1 && oldScoreB == -1)
+                            DateTime matchTime = user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].Datum;
+                            DateTime currentTime = DateTime.Now;
+
+                            if (oldScoreA == -1 && oldScoreB == -1 && currentTime < matchTime)
                             {
                                 user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore = Convert.ToInt32(valueSplit[0]);
                                 user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore = Convert.ToInt32(valueSplit[1]);
