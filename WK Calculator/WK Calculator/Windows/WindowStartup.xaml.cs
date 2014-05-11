@@ -39,28 +39,22 @@ namespace WK_Calculator
             // Read Scores
             XLSDataSpelers.Init();
             XLSDataSpelers.ReadXLS();
-
-            int b = 0;
+            
             // Read user XLS
             foreach (var user in Data.Users)
             {
                 XLSUser.Init(user);
                 XLSUser.ReadXLS();
             }
-            int a = 0;
 
             // Read main XLS
             XLSMainData.Init();
             XLSMainData.ReadXLS();
-
-            int c = 0;
         }
 
         private void btnMainData_Click(object sender, RoutedEventArgs e)
         {
             wMd = new WindowMainData();
-
-            wMd.lbSchema.DataContext = Data.SpeelSchema.Groups;
 
             this.Hide();
             wMd.ShowDialog();

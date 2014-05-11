@@ -11,6 +11,7 @@ namespace WK_Calculator
     public class Match
     {
         public DateTime Datum { get; set; }
+        public string Groep { get; set; }
         public string TeamA { get; set; }
         public string TeamB { get; set; }
         public int TeamAScore { get; set; }
@@ -32,7 +33,7 @@ namespace WK_Calculator
         
 
 
-        public Match(string teamA, string teamB,string datum)
+        public Match(string teamA, string teamB,string datum, string groep)
         {
             TeamA = teamA;
             TeamB = teamB;
@@ -47,7 +48,9 @@ namespace WK_Calculator
             if (date[1] == "juli")
                 date[1] = "07";
 
-            Datum = new DateTime(2014,Convert.ToInt32(date[1]),Convert.ToInt32(date[0]),Convert.ToInt32(date[2]),0,0);        
+            Datum = new DateTime(2014,Convert.ToInt32(date[1]),Convert.ToInt32(date[0]),Convert.ToInt32(date[2]),0,0);
+
+            Groep = groep;
         }
 
         public override string ToString()

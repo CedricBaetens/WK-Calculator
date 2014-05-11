@@ -14,6 +14,6 @@ namespace WK_Calculator
         protected static HSSFWorkbook Workbook;
         protected static ISheet Sheet;
         protected static FileStream File;
-        protected static string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Calculator";
+        protected static string dataFolder = Data.dataFolder;
     }
 }

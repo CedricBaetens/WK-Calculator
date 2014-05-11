@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using NPOI.HSSF.UserModel;
 
 namespace WK_Calculator
@@ -12,93 +13,114 @@ namespace WK_Calculator
     {
         public static void Init()
         {
-            File = new FileStream(dataFolder + @"\DataSpelers.xls", FileMode.Open, FileAccess.Read);           
-            Workbook = new HSSFWorkbook(File);
-            Sheet = Workbook.GetSheet("Users");
+            try
+            {
+                File = new FileStream(dataFolder + @"\DataSpelers.xls", FileMode.Open, FileAccess.Read);
+                Workbook = new HSSFWorkbook(File);
+                Sheet = Workbook.GetSheet("Users");
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("DataSpelers.xls is open, gelieve deze te sluiten en het programma opnieuw op te starten.", "Excel lees fout");
+                Environment.Exit(0);
+            }
+            
         }
 
         public static void ReadXLS()
         {
-            Init();
-            // Elke gebruiker
-            foreach (var user in Data.Users)
+            int row = 0;
+            int col = 0;
+            try
             {
-                // Gebruikers aflopen in excel
-                for (int col = 1; col < Data.Users.Count + 1; col++)
+                Init();
+                // Elke gebruiker
+                foreach (var user in Data.Users)
                 {
-                    // Zelfde grbuiker in de lijst als in excel
-                    string val = Sheet.GetRow(0).GetCell(col).StringCellValue;
-                    if (Sheet.GetRow(0).GetCell(col).StringCellValue == user.Name)
+                    // Gebruikers aflopen in excel
+                    for (col = 1; col < Data.Users.Count + 1; col++)
                     {
-                        #region Matchen
-                        
-                        int groupIndex = 0;
-                        int matchIndex = 0;
-                        for (int row = 1; row < 78; row++)
+                        // Zelfde grbuiker in de lijst als in excel
+                        string val = Sheet.GetRow(0).GetCell(col).StringCellValue;
+                        if (Sheet.GetRow(0).GetCell(col).StringCellValue == user.Name)
                         {
-                            if (Sheet.GetRow(row).GetCell(col) != null)
-                            {
-                                if (Sheet.GetRow(row).GetCell(col).StringCellValue != "" && Sheet.GetRow(row).GetCell(col).StringCellValue != "/")
-                                {
-                                    string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
-                                    var valueSplit = value.Split('-');
+                            #region Matchen
 
-                                    user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore = Convert.ToInt32(valueSplit[0]);
-                                    user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore = Convert.ToInt32(valueSplit[1]);
-                                    matchIndex++;
-                                }
-                                else
-                                {
-                                    groupIndex++;
-                                    matchIndex = 0;
-                                }
-                            }
-                        }
-
-                        #endregion
-                        #region Vragen Laatste 4
-
-                        int antwoordIndex = 0;
-                        int vraagIndex = 0;
-                        for (int row = 79; row < 140; row++)
-                        {
-                            if (Sheet.GetRow(row) != null)
+                            int groupIndex = 0;
+                            int matchIndex = 0;
+                            for (row = 1; row < 78; row++)
                             {
                                 if (Sheet.GetRow(row).GetCell(col) != null)
                                 {
-                                    // laatste 4 + groepswinnaars
-                                    if (row < 134)
+                                    if (Sheet.GetRow(row).GetCell(col).StringCellValue != "" && Sheet.GetRow(row).GetCell(col).StringCellValue != "/")
                                     {
                                         string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
-                                        if (value != "/")
-                                        {
-                                            ((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex] = value;
-                                        }
+                                        var valueSplit = value.Split('-');
+
+                                        user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamAScore = Convert.ToInt32(valueSplit[0]);
+                                        user.SpeelSchema.Groups[groupIndex].Matchen[matchIndex].TeamBScore = Convert.ToInt32(valueSplit[1]);
+                                        matchIndex++;
                                     }
-                                    // Topscoorder + schiftingsvragen
                                     else
                                     {
-                                        string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
-                                        if (value != "/")
-                                        {
-                                            ((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord = value;
-                                        }
+                                        groupIndex++;
+                                        matchIndex = 0;
                                     }
-                                    antwoordIndex++;
-                                    
                                 }
                             }
-                            else
-                            {
-                                antwoordIndex = 0;
-                                vraagIndex++;
-                            }  
-                        }
 
-                        #endregion
+                            #endregion
+                            #region Vragen Laatste 4
+
+                            int antwoordIndex = 0;
+                            int vraagIndex = 0;
+                            for (row = 79; row < 140; row++)
+                            {
+                                if (Sheet.GetRow(row) != null)
+                                {
+                                    if (Sheet.GetRow(row).GetCell(col) != null)
+                                    {
+                                        // laatste 4 + groepswinnaars
+                                        if (row < 134)
+                                        {
+                                            string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                            if (value != "/")
+                                            {
+                                                ((Question4Answers)user.Questions[vraagIndex]).Antwoorden[antwoordIndex] = value;
+                                            }
+                                        }
+                                        // Topscoorder + schiftingsvragen
+                                        else
+                                        {
+                                            string value = Sheet.GetRow(row).GetCell(col).StringCellValue;
+                                            if (value != "/")
+                                            {
+                                                ((QuestionSingleAnswer)user.Questions[vraagIndex]).Antwoord = value;
+                                            }
+                                        }
+                                        antwoordIndex++;
+
+                                    }
+                                }
+                                else
+                                {
+                                    antwoordIndex = 0;
+                                    vraagIndex++;
+                                }
+                            }
+
+                            #endregion
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+                MessageBox.Show(string.Format("Fout bij het inlezen van DataSpelers.xls. op rij {0}, col {1}. Gelieve dit probleem op te lossen en het programma opnieuw op te starten.", row + 1, col+1));
+                Environment.Exit(0);
+            }
+
+            
         }
         public static void WriteXLS()
         {

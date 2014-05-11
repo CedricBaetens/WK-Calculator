@@ -9,9 +9,11 @@ namespace WK_Calculator
 {
     public abstract class Data
     {
+        public static string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Calculator";
         public static ObservableCollection<User> Users = new ObservableCollection<User>();
         public static Schema SpeelSchema = new Schema();
         public static ObservableCollection<Question> Questions = new ObservableCollection<Question>();
+        
 
         public static void Init()
         {

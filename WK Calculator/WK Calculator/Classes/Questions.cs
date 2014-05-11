@@ -9,6 +9,7 @@ namespace WK_Calculator
 {
     public class Question
     {
-        public string Name { get; set; }       
+        public string Name { get; set; }
+        public string Antwoord1String { get; set; }
     }
 }

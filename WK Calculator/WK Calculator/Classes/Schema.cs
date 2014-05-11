@@ -17,9 +17,8 @@ namespace WK_Calculator
         public Schema()
         {
             Group groep;
-            string dataFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\WK Calculator";
 
-            string[] lines = File.ReadAllLines(dataFolder + @"\Matchen.txt");
+            string[] lines = File.ReadAllLines(Data.dataFolder + @"\Matchen.txt");
             for (int i = 0; i < lines.Length; i++)
             {
                 if (lines[i].Contains("Groep"))
@@ -58,12 +57,12 @@ namespace WK_Calculator
             for (int j = 1; j < count; j++)
             {
                 var line = lines[i + j];
-                groep.Matchen.Add(FormatData(line));
+                groep.Matchen.Add(FormatData(line,groep.Name));
             }
             Groups.Add(groep);
             return groep;
         }
-        private Match FormatData(string line)
+        private Match FormatData(string line, string groep)
         {
             // Match
             var tempMatch = line.Split(')');
@@ -80,7 +79,7 @@ namespace WK_Calculator
 
             string datumFull = datum + "-" + uur;
 
-            return new Match(teamA, teamB, datumFull);
+            return new Match(teamA, teamB, datumFull, groep);
         }
     }
 }

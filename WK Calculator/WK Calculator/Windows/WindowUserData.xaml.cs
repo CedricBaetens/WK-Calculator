@@ -19,73 +19,56 @@ namespace WK_Calculator
     /// </summary>
     public partial class WindowUserData : Window
     {
+        public List<Match> matchen = new List<Match>();
+        public List<Question> vragen = new List<Question>();
         public WindowUserData()
         {
             InitializeComponent();
-
-            lbSchema.Visibility = Visibility.Hidden;
-            lbMatches.Visibility = Visibility.Hidden;
-            grMatchData.Visibility = Visibility.Hidden;
-            grQuestionAnswersMultiple.Visibility = Visibility.Hidden;
-            grQuestionAnswersSingle.Visibility = Visibility.Hidden;
-            lbQuestion.Visibility = Visibility.Hidden;
+            lbUsers.SelectedIndex = 0;
         }
 
-        // Grid1
         private void lbUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Grid 1
-            lbSchema.DataContext = ((User)lbUsers.SelectedItem).SpeelSchema.Groups;
-            lbSchema.Visibility = Visibility.Visible;
-            lbMatches.Visibility = Visibility.Hidden;
-            grMatchData.Visibility = Visibility.Hidden;
+            matchen.Clear();
+            vragen.Clear();
 
-            // Grid 2
-            lbQuestion.DataContext = ((User)lbUsers.SelectedItem).Questions;
-            lbQuestion.Visibility = Visibility.Visible;
-            grQuestionAnswersMultiple.Visibility = Visibility.Hidden;
-            grQuestionAnswersSingle.Visibility = Visibility.Hidden;
-        }
+            User user = (User)lbUsers.SelectedItem;
 
-        private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (((Group)lbSchema.SelectedItem) != null)
-                lbMatches.DataContext = ((Group)lbSchema.SelectedItem).Matchen;
-            lbSchema.Visibility = Visibility.Visible;
-            lbMatches.Visibility = Visibility.Visible;
-            grMatchData.Visibility = Visibility.Hidden;
-        }
-
-        private void lbMatches_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lbSchema.Visibility = Visibility.Visible;
-            lbMatches.Visibility = Visibility.Visible;
-            grMatchData.Visibility = Visibility.Visible;
-        }
-               
-        // Grid 2
-        private void lbQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = lbQuestion.SelectedIndex;
-            if (index < 11 && index > -1)
+            // Matchen
+            foreach (var group in user.SpeelSchema.Groups)
             {
-                grQuestionAnswersMultiple.DataContext = ((Question4Answers)lbQuestion.SelectedItem).Antwoorden;
-                grQuestionAnswersMultiple.Visibility = Visibility.Visible;
-                grQuestionAnswersSingle.Visibility = Visibility.Hidden;
+                foreach (var match in group.Matchen)
+                {
+                    matchen.Add(match);
+                }
             }
-            else
+            dgMatches.ItemsSource = matchen;
+            dgMatches.Items.Refresh();
+
+            // Vragen
+            foreach (var question in user.Questions)
             {
-                grQuestionAnswersSingle.DataContext = (QuestionSingleAnswer)lbQuestion.SelectedItem;
-                grQuestionAnswersMultiple.Visibility = Visibility.Hidden;
-                grQuestionAnswersSingle.Visibility = Visibility.Visible;
+                if (question is Question4Answers)
+                {
+                    question.Antwoord1String = "";
+                    Question4Answers question4 = (Question4Answers)question;
+                    foreach (var antwoord in question4.Antwoorden)
+                    {
+                        if (antwoord != "")
+                        {
+                            question.Antwoord1String += (question4.Antwoorden.IndexOf(antwoord) + 1) + "e: " + antwoord + ", ";
+                        }
+                    }
+                
+                }
+                else if (question is QuestionSingleAnswer)
+                {
+                    question.Antwoord1String = ((QuestionSingleAnswer)question).Antwoord;
+                }
+                vragen.Add(question);
             }
-
-            
-        }
-
-        private void tb_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ((TextBox)sender).Clear();
+            dgQuestions.ItemsSource = vragen;
+            dgQuestions.Items.Refresh();
         }
     }
 }

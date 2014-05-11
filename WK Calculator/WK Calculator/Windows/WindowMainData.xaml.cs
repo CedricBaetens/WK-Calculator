@@ -19,35 +19,53 @@ namespace WK_Calculator
     /// </summary>
     public partial class WindowMainData : Window
     {
+        public List<Match> matchen = new List<Match>();
+        public List<Question> vragen = new List<Question>();
         public WindowMainData()
         {
             InitializeComponent();
-
-            // Visibility
-            lbMatches.Visibility = Visibility.Hidden;
-            grMatchData.Visibility = Visibility.Hidden;
-
-            // Laatste 4 
-            grData.DataContext = ((Question4Answers)Data.Questions[0]).Antwoorden;
-
         }
 
-        private void lbSchema_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            lbMatches.DataContext = ((Group)lbSchema.SelectedItem).Matchen;
-            lbMatches.Visibility = Visibility.Visible;
-            grMatchData.Visibility = Visibility.Hidden;
-        }
+            matchen.Clear();
+            vragen.Clear();
 
-        private void lbMatches_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            lbMatches.Visibility = Visibility.Visible;
-            grMatchData.Visibility = Visibility.Visible;
-        }
+            // Matchen
+            foreach (var group in Data.SpeelSchema.Groups)
+            {
+                foreach (var match in group.Matchen)
+                {
+                    matchen.Add(match);
+                }
+            }
+            dgMatches.ItemsSource = matchen;
+            dgMatches.Items.Refresh();
+            
+            // Vragen
+            foreach (var question in Data.Questions)
+            {
+                if (question is Question4Answers)
+                {
+                    question.Antwoord1String = "";
+                    Question4Answers question4 = (Question4Answers)question;
+                    foreach (var antwoord in question4.Antwoorden)
+                    {
+                        if (antwoord != "")
+                        {
+                            question.Antwoord1String += (question4.Antwoorden.IndexOf(antwoord) + 1) + "e: " + antwoord + ", ";
+                        }
+                    }
 
-        private void tb_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ((TextBox)sender).Clear();
-        }        
+                }
+                else if (question is QuestionSingleAnswer)
+                {
+                    question.Antwoord1String = ((QuestionSingleAnswer)question).Antwoord;
+                }
+                vragen.Add(question);
+            }
+            dgQuestions.ItemsSource = vragen;
+            dgQuestions.Items.Refresh();
+        }
     }
 }
